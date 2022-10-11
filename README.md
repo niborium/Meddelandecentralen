@@ -6,14 +6,14 @@ Skapad med:
 [SignalR Client](https://learn.microsoft.com/en-us/aspnet/core/signalr/client-features?view=aspnetcore-6.0)  
 [BlazorStrap V5](https://blazorstrap.io/V5/)  
 # Inlämning 1 - Planering  
-Val av idé:  
+<ins>Val av idé:</ins>  
 "2. En chatt där alla kan prata med alla, "som Slack ungefär", i så fall måste det vara tydligt vilket rum som är aktuellt och om rummets status påverkas."  
 
-Typ (Arbetsorder):  
+<ins>Typ (Arbetsorder):</ins>  
 Tanken är att meddelandet som skickas innehåller tidstämpel (datum + klockslag), vem som skickat meddelandet, gällande vilket rum, meddelande, status och tilldelad till. Sedan kan man i realtid kunna toggla denna status via två knappar (andra anställda beroende på om det är åtgärdad eller under utredning) när man klickar på knappen så tilldelar den användaren automatiskt.
 
-Typ (Chattmeddelande):  
+<ins>Typ (Chattmeddelande):</ins>  
 tidstämpel (datum + klockslag), vem som skickat meddelandet och meddelande.
 
-Tillfällig planering (Kanban):
+<ins>Tillfällig planering (Kanban):</ins>  
 Kommer snart..
