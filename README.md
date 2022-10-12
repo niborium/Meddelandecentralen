@@ -19,5 +19,10 @@ Tanken är att meddelandet som skickas innehåller tidstämpel (datum + klocksla
 <ins>Typ (Chattmeddelande):</ins>  
 tidstämpel (datum + klockslag), vem som skickat meddelandet och meddelande.
 
-<ins>Tillfällig planering (Kanban):</ins>  
-Kommer snart..
+<ins>Initial planering (Kanban):</ins>  
+1) [Öppna nedan Kanban bild i större storlek](https://github.com/niborium/Meddelandecentralen/blob/main/Kanban-initial.PNG)  
+2) [Öppna Kanbanbrädet - Endast behöriga - Robin & Viktor](https://github.com/users/niborium/projects/1/views/1)   
+3) [Se milstolpar och uppgifter](https://github.com/niborium/Meddelandecentralen/milestones)  
+![Kanban](https://github.com/niborium/Meddelandecentralen/blob/main/Kanban-initial.PNG?raw=true)  
+
+Observera att ovan är en Initial planering av arbetet. Det kan tillkomma uppgifter eller redigeras uppgifter under arbetets gång.
