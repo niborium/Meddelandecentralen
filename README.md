@@ -5,6 +5,10 @@ Skapad med:
 [Blazor server (ASP.NET Core)](https://learn.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-6.0) med [SignalR Hubs](https://learn.microsoft.com/en-us/aspnet/core/signalr/hubs?view=aspnetcore-6.0)  
 [SignalR Client](https://learn.microsoft.com/en-us/aspnet/core/signalr/client-features?view=aspnetcore-6.0)  
 [BlazorStrap V5](https://blazorstrap.io/V5/)  
+
+# Installationsanvisning  
+Läggs till senare (inför överlämning och driftsättning) ..
+  
 # Inlämning 1 - Planering  
 <ins>Val av idé:</ins>  
 "2. En chatt där alla kan prata med alla, "som Slack ungefär", i så fall måste det vara tydligt vilket rum som är aktuellt och om rummets status påverkas."  
