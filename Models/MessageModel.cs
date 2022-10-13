@@ -6,14 +6,12 @@ namespace Meddelandecentralen.Models
 {
     public class MessageModel
     {
-        //Read-only static (Generates Guid and return DateTime)
-        public static Guid Id { get { return Guid.NewGuid(); } }
-        public static DateTime Date { get { return DateTime.Now; } }
-        //Fields
+        public Guid Id { get; set; }
+        public DateTime Date { get; set; }
         public enum Messagetype
         {
-            Workorder,
-            Chat
+          Workorder,
+          Chat
         }
         public Messagetype MessagetypeSetting { get; set; }
         public string Author { get; set; }
@@ -21,13 +19,15 @@ namespace Meddelandecentralen.Models
         public string Status { get; set; }
         public string Assigned { get; set; }
 
-        public MessageModel(Messagetype messagetypesetting, string author,string message, string status, string assigned)
+        public MessageModel(Guid id, DateTime date, Messagetype messagetypesetting, string author,string message, string status, string assigned)
         {
-            MessagetypeSetting = messagetypesetting;
-            Author = author;
-            Message = message;
-            Status = status;
-            Assigned = assigned;
+          Id = id;
+          Date = date;
+          MessagetypeSetting = messagetypesetting;
+          Author = author;
+          Message = message;
+          Status = status;
+          Assigned = assigned;
         }
     }
 }
