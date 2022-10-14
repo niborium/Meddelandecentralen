@@ -7,7 +7,7 @@ namespace Meddelandecentralen.Models
     public class MessageModel
     {
         public Guid Id { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public enum Messagetype
         {
           Workorder,
@@ -20,7 +20,7 @@ namespace Meddelandecentralen.Models
         public string Status { get; set; }
         public string Assigned { get; set; }
 
-        public MessageModel(Guid id, DateTime date, Messagetype messagetypesetting, string room, string author,string message, string status, string assigned)
+        public MessageModel(Guid id, string date, Messagetype messagetypesetting, string room, string author,string message, string status, string assigned)
         {
           Id = id;
           Date = date;

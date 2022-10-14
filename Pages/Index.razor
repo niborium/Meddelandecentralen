@@ -1,7 +1,115 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+@inject NavigationManager Navigation
+@implements IAsyncDisposable
 
 <PageTitle>Meddelandecentralen</PageTitle>
 
-<h1>Meddelandecentralen</h1>
+<form id="messagetype-options">
+<div class="form-group">
+  <label for="msgt">Meddelandetyp:</label>
+  <select id="msgt" name="msgt" @onchange="OnDropdownChange">
+    <option value="Chat">Chat</option>
+    <option value="Workorder">Workorder</option>
+  </select>
+</div>
+</form>
+@if (messagetypeInput == "Workorder")
+{
+<div class="form-group">
+    <label>
+      Rum:
+      <input @bind="roomInput" />
+    </label>
+</div>
+}
+<div class="form-group">
+    <label>
+      Ditt namn:
+      <input @bind="authorInput" />
+    </label>
+</div>
+<div class="form-group">
+    <label>
+      Meddelande:
+      <input @bind="messageInput" size="50" />
+    </label>
+</div>
+<button @onclick="Send" disabled="@(!IsConnected)">Skicka</button>
+<p style="color: red">@infoMessage</p>
+<hr>
 
-Välkommen till meddelandecentralen
+<ul id="messagesList">
+    @foreach (var message in messages)
+    {
+      <li>@message</li>
+    }
+</ul>
+
+@code {
+    private HubConnection? hubConnection;
+    private List<string> messages = new List<string>();
+    private string? messagetypeInput;
+    private string? roomInput;
+    private string? authorInput;
+    private string? messageInput;
+    private string? infoMessage;
+
+    private void OnDropdownChange(ChangeEventArgs e)
+    {
+      messagetypeInput = e.Value?.ToString();
+      roomInput = "";
+      authorInput = "";
+      messageInput = "";
+      infoMessage = "";
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        messagetypeInput = "Chat";
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+            .Build();
+
+        hubConnection.On<string, string, string, string, string, string, string>("ReceiveMessage", (date, messagetype, room, author, message, status, assigned) =>
+        { 
+          if(messagetype == "Workorder"){
+            var encodedMsg = $"[{date}] - [{messagetype}]: {room} - Publicerad av: {author} - Meddelande: {message} - Status: {status} - Tilldelad till: {assigned}";
+            messages.Add(encodedMsg);
+            InvokeAsync(StateHasChanged);
+          } else {
+            var encodedMsg = $"[{date}] - [{messagetype}]: {room} - Publicerad av: {author} - Meddelande: {message}";
+            messages.Add(encodedMsg);
+            InvokeAsync(StateHasChanged);
+          }
+        });
+        await hubConnection.StartAsync();
+    }
+
+    private async Task Send()
+    {
+      if (hubConnection is not null)
+      {
+        if(authorInput?.Count() > 1 && messageInput?.Count() > 1){
+          await hubConnection.SendAsync("SendMessage", messagetypeInput, roomInput, authorInput, messageInput);
+          roomInput = "";
+          messageInput = "";
+        }
+        else {
+          infoMessage = "Du måste fylla i båda fälten Ditt namn och Meddelande ovan för att skicka meddelandet.";
+        }
+      }
+    }
+
+    public bool IsConnected =>
+      hubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+      if (hubConnection is not null)
+      {
+        await hubConnection.DisposeAsync();
+      }
+    }
+}
