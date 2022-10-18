@@ -46,7 +46,14 @@
     </Content>
 </BSCollapse>
 <hr>
-
+<BSContainer Container="Container.Fluid" style="display: flex; text-align: center; align-items: center; justify-content: center; margin-bottom: 1rem;">
+  <label for="filter">Filtrera:</label><br />
+  <select id="filter" name="filter" @onchange="OnFilterChange">
+  <option value="Filter-Alla">Alla</option>
+  <option value="Filter-Arbetsordrar">Visa alla arbetsordrar</option>
+  <option value="Filter-Chattar">Visa alla chattar</option>
+  </select>
+</BSContainer>
 <BSContainer Container="Container.Fluid" style="display: flex; text-align: center; align-items: center; justify-content: center; flex-direction: column">
     @foreach (var message in messages)
     {
@@ -55,7 +62,7 @@
         var id = message.Substring(1,36);
         var idf = message.Substring(0,40);
         var messagewithoutid = message.Replace(idf, "");
-      <BSCard CardType="CardType.Card" style="width: 18rem; background-color: #ADD8E6; margin-bottom: 1rem;">
+      <BSCard CardType="CardType.Card" class="aoCard"  style="width: 18rem; background-color: #ADD8E6; margin-bottom: 1rem;">
       <BSCard CardType="CardType.Body">
         <BSCard CardType="CardType.Title">Arbetsorder</BSCard>
         <BSCard CardType="CardType.Text">
@@ -93,7 +100,7 @@
       </BSCard>     
       }
       else {
-      <BSCard CardType="CardType.Card" style="width: 18rem; background-color: #FFFFE0; margin-bottom: 1rem">
+      <BSCard CardType="CardType.Card" class="chatCard" style="width: 18rem; background-color: #FFFFE0; margin-bottom: 1rem;">
       <BSCard CardType="CardType.Body">
         <BSCard CardType="CardType.Title">Chatt</BSCard>
         <BSCard CardType="CardType.Text">
@@ -104,6 +111,16 @@
       }
     }
 </BSContainer>
+<style type="text/css">
+    .chatCard
+    {
+      display: @(chatToggler); 
+    }
+    .aoCard
+    {
+      display: @(aoToggler); 
+    }
+</style>
 
 @code {
     private HubConnection? hubConnection;
@@ -116,6 +133,9 @@
     private string? caseManager;
     private string? casemanagerMessage;
 
+    private string? aoToggler = "initial";
+    private string? chatToggler = "initial";
+
     private void OnDropdownChange(ChangeEventArgs e)
     {
       messagetypeInput = e.Value?.ToString();
@@ -123,6 +143,22 @@
       authorInput = "";
       messageInput = "";
       infoMessage = "";
+    }
+    private void OnFilterChange(ChangeEventArgs e)
+    {
+      string ?userchoice = e.Value?.ToString();
+      if(userchoice == "Filter-Arbetsordrar"){
+        aoToggler = "initial";
+        chatToggler = "none"; 
+      }
+      if(userchoice == "Filter-Chattar"){
+        aoToggler = "none";
+        chatToggler = "initial"; 
+      }
+      if(userchoice == "Filter-Alla"){
+        aoToggler = "initial";
+        chatToggler = "initial"; 
+      }
     }
 
     protected override async Task OnInitializedAsync()
