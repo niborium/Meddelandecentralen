@@ -80,7 +80,10 @@
             <BSButton Color="BSColor.Warning" @onclick="() => SendInvestigate(id)">Tilldela mig arbetsordern</BSButton>
             </Footer>
             </BSModal>
-          <BSButton Color="BSColor.Warning" Target="modalinvestigate">Under utredning</BSButton>
+            @if(!(message.Contains("Under utredning") || message.Contains("Åtgärdad")))
+            {
+              <BSButton Color="BSColor.Warning" Target="modalinvestigate">Under utredning</BSButton>
+            }
 
           <BSModal DataId="modaldone">
             <Header>Åtgärdad</Header>
@@ -94,7 +97,10 @@
             <BSButton Color="BSColor.Success" @onclick="() => SendDone(id)">Åtgärda arbetsorder</BSButton>
             </Footer>
             </BSModal>
-          <BSButton Color="BSColor.Success" Target="modaldone">Åtgärdad</BSButton>
+            @if(!message.Contains("Åtgärdad"))
+            {
+              <BSButton Color="BSColor.Success" Target="modaldone">Åtgärdad</BSButton>
+            }
         </BSCard>
       </BSCard>
       </BSCard>     
