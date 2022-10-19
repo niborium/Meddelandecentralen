@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace Meddelandecentralen.Models
 {
-    public class MessageModel
+  public class MessageModel
     {
         public Guid Id { get; set; }
         public string Date { get; set; }
         public enum Messagetype
         {
-          Workorder,
-          Chat
+          Arbetsorder,
+          Chatt
         }
         public Messagetype MessagetypeSetting { get; set; }
         public string Room { get; set; }
