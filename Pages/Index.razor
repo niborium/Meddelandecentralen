@@ -192,7 +192,7 @@
         hubConnection.On<string, string, string>("ReceiveDone", (id, casemanager, status) =>
         { 
           int index = messages.FindIndex(ind => ind.Contains(id));
-          var updated = messages[index].Replace("Tilldelad till", "Åtgärdad av").Replace("Ej tilldelad", casemanager).Replace("Ej påbörjad", status).Replace("Under utredning", status);
+          var updated = messages[index].Replace("Tilldelad till", "Utredd av").Replace("Ej tilldelad", casemanager).Replace("Ej påbörjad", status).Replace("Under utredning", status + " av " +casemanager);
           messages.RemoveAt(index);
           messages.Insert(index, updated);
           InvokeAsync(StateHasChanged);
