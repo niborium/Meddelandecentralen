@@ -26,3 +26,16 @@ tidstämpel (datum + klockslag), vem som skickat meddelandet och meddelande.
 ![Kanban](https://github.com/niborium/Meddelandecentralen/blob/main/Kanban-initial.PNG?raw=true)  
 
 Observera att ovan är en Initial planering av arbetet. Det kan tillkomma uppgifter eller redigeras uppgifter under arbetets gång.
+
+# Inlämning 2 - Lägesrapport
+<ins>Klassdiagram:</ins>  
+![Classdiagram](https://github.com/niborium/Meddelandecentralen/blob/main/Artefacts/Meddelandecentralen-classdiagram.png)
+
+<ins>Kanban uppdatering:</ins>  
+Ligger före planeringen med god marginal och har egentligen endast förbättring av meddelande formatet som kvarstår.
+Det som kvarstår utöver det är tester (det som finns uppgifter för) och även eventuell förbättring av gränssnittet.
+
+1) [Öppna nedan Kanban bild i större storlek](https://github.com/niborium/Meddelandecentralen/blob/main/Kanban-update.PNG)  
+2) [Öppna Kanbanbrädet - Endast behöriga - Robin & Viktor](https://github.com/users/niborium/projects/1/views/1)   
+3) [Se milstolpar och uppgifter](https://github.com/niborium/Meddelandecentralen/milestones)  
+![Kanban](https://github.com/niborium/Meddelandecentralen/blob/main/Kanban-update.PNG?raw=true)  
