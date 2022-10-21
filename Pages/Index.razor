@@ -80,7 +80,7 @@
             </Content>
             <Footer Context="modal">
             <BSButton MarginStart="Margins.Auto" Color="BSColor.Secondary" @onclick="modal.HideAsync">Stäng</BSButton>
-            <BSButton Color="BSColor.Warning" @onclick="() => SendInvestigate(id)">Tilldela mig arbetsordern</BSButton>
+            <BSButton Color="BSColor.Warning" @onclick="() => SendInvestigate(id, modal.HideAsync)">Tilldela mig arbetsordern</BSButton>
             </Footer>
             </BSModal>
             @if(!(message.Contains("Under utredning") || message.Contains("Åtgärdad")))
@@ -97,7 +97,7 @@
             </Content>
             <Footer Context="modal">
             <BSButton MarginStart="Margins.Auto" Color="BSColor.Secondary" @onclick="modal.HideAsync">Stäng</BSButton>
-            <BSButton Color="BSColor.Success" @onclick="() => SendDone(id)">Åtgärda arbetsorder</BSButton>
+            <BSButton Color="BSColor.Success" @onclick="() => SendDone(id, modal.HideAsync)">Åtgärda arbetsorder</BSButton>
             </Footer>
             </BSModal>
             @if(!message.Contains("Åtgärdad"))
@@ -226,26 +226,28 @@
         }
       }
     }
-    private async Task SendInvestigate(string caseId)
+    private async Task SendInvestigate(string caseId, Delegate hidemodal)
     {
       if (hubConnection is not null)
       {
         if(caseManager?.Count() > 1){
           await hubConnection.SendAsync("SendInvestigate", caseId, caseManager);
           caseManager = "";
+          hidemodal.DynamicInvoke();
         }
         else {
           casemanagerMessage = "Du måste fylla i ditt namn som handläggare innan du kan skicka.";
         }
       }
     }
-    private async Task SendDone(string caseId)
+    private async Task SendDone(string caseId, Delegate hidemodal)
     {
       if (hubConnection is not null)
       {
         if(caseManager?.Count() > 1){
           await hubConnection.SendAsync("SendDone", caseId, caseManager);
           caseManager = "";
+          hidemodal.DynamicInvoke();
         }
         else {
           casemanagerMessage = "Du måste fylla i ditt namn som handläggare innan du kan skicka.";
