@@ -188,10 +188,8 @@
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
           } else {
-            var encodedMsg = $"[{date}] - [{messagetype}]: - Publicerad av: {author} - Meddelande: {message}";
-            var testrk = encodedMsg.Replace("-",  System.Environment.NewLine);
-
-            messages.Add(testrk);
+            var encodedMsg = $"[{date}] - [{messagetype}]: - Publicerad av: {author} Meddelande: {message}";
+            messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
           }
         });
