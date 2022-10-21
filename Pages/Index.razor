@@ -62,11 +62,14 @@
         var id = message.Substring(1,36);
         var idf = message.Substring(0,40);
         var messagewithoutid = message.Replace(idf, "");
+        string meddelande = messagewithoutid.Split(new string[]{"Meddelande:"}, StringSplitOptions.None).Last();
+        var title = messagewithoutid.Replace(meddelande,"").Replace("Meddelande:","");
       <BSCard CardType="CardType.Card" class="aoCard"  style="width: 18rem; background-color: #ADD8E6; margin-bottom: 1rem;">
       <BSCard CardType="CardType.Body">
-        <BSCard CardType="CardType.Title">Arbetsorder</BSCard>
+        <BSCard CardType="CardType.Title">@title</BSCard>
         <BSCard CardType="CardType.Text">
-          @messagewithoutid
+          <b>Ärendebeskrivning:</b><br><br/>
+          @meddelande
           <br><br />
           <BSModal DataId="modalinvestigate">
             <Header>Under utredning</Header>
@@ -106,11 +109,14 @@
       </BSCard>     
       }
       else {
+        string meddelande = message.Split(new string[]{"Meddelande:"}, StringSplitOptions.None).Last();
+        var title = message.Replace(meddelande,"").Replace("Meddelande:","");
+        
       <BSCard CardType="CardType.Card" class="chatCard" style="width: 18rem; background-color: #FFFFE0; margin-bottom: 1rem;">
       <BSCard CardType="CardType.Body">
-        <BSCard CardType="CardType.Title">Chatt</BSCard>
+        <BSCard CardType="CardType.Title">@title</BSCard>
         <BSCard CardType="CardType.Text">
-            @message
+            @meddelande
         </BSCard>
       </BSCard>
       </BSCard>
@@ -178,11 +184,11 @@
         hubConnection.On<string, string, string, string, string, string, string, string>("ReceiveMessage", (id, date, messagetype, room, author, message, status, assigned) =>
         { 
           if(messagetype == "Arbetsorder"){
-            var encodedMsg = $"[{id}] - [{date}] - [{messagetype}]: Rum: {room} - Publicerad av: {author} - Meddelande: {message} - Status: {status} - Tilldelad till: {assigned}";
+            var encodedMsg = $"[{id}] - [{date}] - [{messagetype}]: Rum: {room} - Publicerad av: {author} - Status: {status} - Tilldelad till: {assigned} Meddelande: {message}";
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
           } else {
-            var encodedMsg = $"[{date}] - [{messagetype}]: - Publicerad av: {author} - Meddelande: {message}";
+            var encodedMsg = $"[{date}] - [{messagetype}]: - Publicerad av: {author} Meddelande: {message}";
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
           }
