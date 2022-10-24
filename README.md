@@ -7,7 +7,23 @@ Skapad med:
 [BlazorStrap V5](https://blazorstrap.io/V5/)  
 
 # Installationsanvisning  
-Läggs till senare (inför överlämning och driftsättning) ..
+<ins>För utvecklare och testning (lokalt):</ins>  
+Ladda ner koden som zip eller klona ner med git clone via Code-knappen uppe till höger.  
+
+Nödvändig förutsättning (Om inte installerat redan på dator):
+[Download .NET](https://dotnet.microsoft.com/en-us/download)  
+
+I din terminal så kör du:  
+dotnet restore  
+dotnet run  
+
+Nu kan du surfa in på applikationen på angiven port och testa applikationen.
+
+Vill du publicera/deploya applikationen så finns information nedan:  
+[Host and deploy ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/host-and-deploy/?view=aspnetcore-6.0)  
+[Deploy .NET Core apps with Visual Studio](https://learn.microsoft.com/en-us/dotnet/core/deploying/deploy-with-vs?tabs=vs156)  
+[Publish .NET apps with the .NET CLI](https://learn.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli)  
+
   
 # Inlämning 1 - Planering  
 <ins>Val av idé:</ins>  
