@@ -1,0 +1,44 @@
+<BSContainer Container="Container.Fluid" style="display: flex; text-align: center; align-items: center; justify-content: center; margin-bottom: 1rem;">
+  <label for="filter">Filtrera:</label><br />
+  <select id="filter" name="filter" @onchange="OnFilterChange">
+  <option value="Filter-Alla">Alla</option>
+  <option value="Filter-Arbetsordrar">Visa alla arbetsordrar</option>
+  <option value="Filter-Chattar">Visa alla chattar</option>
+  </select>
+</BSContainer>
+
+@code {
+    [ParameterAttribute] 
+    public string? aoToggler { get; set; }
+    [ParameterAttribute] 
+    public string? chatToggler { get; set; }
+    [Parameter]
+    public EventCallback<string> aoTogglerChanged { get; set; }
+    [Parameter]
+    public EventCallback<string> chatTogglerChanged { get; set; }
+
+    private void OnFilterChange(ChangeEventArgs e)
+    {
+      string ?userchoice = e.Value?.ToString();
+      if(userchoice == "Filter-Arbetsordrar"){
+        UpdateaoTogglerFromChild("initial");
+        UpdatechatTogglerFromChild("none");
+      }
+      if(userchoice == "Filter-Chattar"){
+        UpdateaoTogglerFromChild("none");
+        UpdatechatTogglerFromChild("initial");
+      }
+      if(userchoice == "Filter-Alla"){
+        UpdateaoTogglerFromChild("initial");
+        UpdatechatTogglerFromChild("initial");
+      }
+    }
+    private async Task UpdateaoTogglerFromChild(string input)
+    {
+      await aoTogglerChanged.InvokeAsync(input);
+    }
+    private async Task UpdatechatTogglerFromChild(string input)
+    {
+      await chatTogglerChanged.InvokeAsync(input);
+    }
+}
