@@ -9,7 +9,7 @@
     <Toggler><BSToggle IsButton="true" Color="BSColor.Primary" style="display:block; margin: 0 auto;">Nytt meddelande</BSToggle></Toggler>
     <Content>
         <br /><br />
-        <BSCard CardType="CardType.Card" style="width:21.5rem; background-color: #77CCFF; text-align: center; display:block; margin: 0 auto;">
+        <BSCard CardType="CardType.Card" style="width:18rem; background-color: #77CCFF; text-align: center; display:block; margin: 0 auto;">
             <form id="messagetype-options">
             <div class="form-group">
               <label for="msgt">Meddelandetyp:</label><br />
@@ -31,16 +31,16 @@
             <div class="form-group">
               <label>
               Ditt namn:
-              <input @bind="authorInput" style="width: 21.5rem;"/>
+              <input @bind="authorInput" style="width: 18rem;"/>
               </label>
               </div>
             <div class="form-group">
               <label>
               Meddelande:<br />
-              <textarea @bind="messageInput" cols="40" rows="5"></textarea>
+              <textarea @bind="messageInput" cols="40" rows="5" style="width: 18rem;"></textarea>
               </label>
             </div>
-            <BSButton Color="BSColor.Primary" @onclick="Send" disabled="@(!IsConnected)" style="width:50%; position: relative; left: 5rem;">Skicka</BSButton>
+            <BSButton Color="BSColor.Primary" @onclick="Send" disabled="@(!IsConnected)" style="width:50%; position: relative; left: 4rem;">Skicka</BSButton>
             <p style="color: red">@infoMessage</p>
         </BSCard>
     </Content>
