@@ -33,11 +33,11 @@
         UpdatechatTogglerFromChild("initial");
       }
     }
-    private async Task UpdateaoTogglerFromChild(string input)
+    private async void UpdateaoTogglerFromChild(string input)
     {
       await aoTogglerChanged.InvokeAsync(input);
     }
-    private async Task UpdatechatTogglerFromChild(string input)
+    private async void UpdatechatTogglerFromChild(string input)
     {
       await chatTogglerChanged.InvokeAsync(input);
     }
