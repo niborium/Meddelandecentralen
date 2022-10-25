@@ -47,6 +47,17 @@ Observera att ovan är en Initial planering av arbetet. Det kan tillkomma uppgif
 <ins>Klassdiagram:</ins>  
 ![Classdiagram](https://github.com/niborium/Meddelandecentralen/blob/main/Artefacts/Meddelandecentralen-classdiagram.png)
 
+#Bidirectional Dependency (MessageInput < - - > Chathub)  
+Ändringar i MessageInput kan påverka SendMessage-funktionen (ChatHub)  
+Ändringar i SendMessage (ChatHub) kan påverka Send-funktionen (MessageInput).  
+Kan resultera i att meddelanden inte skickas korrekt. (Chatt & Arbetsorder)
+
+#Bidirectional Dependency (MessageRenderer < - - > Chathub)  
+Ändringar i MessageRenderer (SendInveistage & SendDone) kan påverka SendInvestigate & SendDone-funktionen (ChatHub)  
+Ändringar i SendInvestigate & SendDone (ChatHub) kan påverka SendInvestigate & SendDone-funktionen (MessageRendrer).  
+Kan resultera i att tilldening och statusuppdatering (Under utredning och Åtgärdad) för meddelanden inte skickas korrekt eller att meddelanden inte tas emot korrekt.  
+
+
 <ins>Kanban uppdatering:</ins>  
 Ligger före planeringen med god marginal och har egentligen endast förbättring av meddelande formatet som kvarstår.
 Det som kvarstår utöver det är tester (det som finns uppgifter för) och även eventuell förbättring av gränssnittet.
