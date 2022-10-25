@@ -48,7 +48,7 @@ Observera att ovan är en Initial planering av arbetet. Det kan tillkomma uppgif
 ![Classdiagram](https://github.com/niborium/Meddelandecentralen/blob/main/Artefacts/Meddelandecentralen-classdiagram.png)
 
 #Bidirectional Dependency (MessageInput < - - > Chathub)  
-Ändringar i MessageInput kan påverka SendMessage-funktionen (ChatHub)  
+Ändringar i Send-funktionen (MessageInput) kan påverka SendMessage-funktionen (ChatHub)  
 Ändringar i SendMessage (ChatHub) kan påverka Send-funktionen (MessageInput).  
 Kan resultera i att meddelanden inte skickas korrekt. (Chatt & Arbetsorder)
 
