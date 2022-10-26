@@ -101,17 +101,17 @@
             .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
             .Build();
 
-        hubConnection.On<string, string, string, string, string, string, string, string>("ReceiveMessage", (id, date, messagetype, room, author, message, status, assigned) =>
+        hubConnection.On<Models.MessageModel>("ReceiveWorkorder", (workorder) =>
         { 
-          if(messagetype == "Arbetsorder"){
-            var encodedMsg = $"[{id}] - [{date}] - [{messagetype}]: Rum: {room} - Publicerad av: {author} - Status: {status} - Tilldelad till: {assigned} Meddelande: {message}";
+            var encodedMsg = $"[{workorder.Id}] - [{workorder.Date}] - [Arbetsorder]: Rum: {workorder.Room} - Publicerad av: {workorder.Author} - Status: {workorder.Status} - Tilldelad till: {workorder.Assigned} Meddelande: {workorder.Message}";
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
-          } else {
-            var encodedMsg = $"[{date}] - [{messagetype}]: - Publicerad av: {author} Meddelande: {message}";
+        });
+        hubConnection.On<Models.MessageModel>("ReceiveChat", (chat) =>
+        { 
+            var encodedMsg = $"[{chat.Date}] - [Chatt]: - Publicerad av: {chat.Author} Meddelande: {chat.Message}";
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
-          }
         });
         hubConnection.On<string, string, string>("ReceiveInvestigate", (id, casemanager, status) =>
         { 
