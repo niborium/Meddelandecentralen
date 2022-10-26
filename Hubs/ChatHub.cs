@@ -17,10 +17,10 @@ namespace BlazorServerSignalRApp.Server.Hubs
             if(messagetype =="Arbetsorder")
             {
             MessageModel workorder = new(Guid.NewGuid(), swedatetime, MessageModel.Messagetype.Arbetsorder,room,author,message,NotStarted,NotAssigned);
-            await Clients.All.SendAsync("ReceiveMessage", workorder.Id, workorder.Date, nameof(MessageModel.Messagetype.Arbetsorder), workorder.Room, workorder.Author, workorder.Message, workorder.Status, workorder.Assigned);
+            await Clients.All.SendAsync("ReceiveWorkorder", workorder);
             } else {
             MessageModel chat = new(Guid.NewGuid(), swedatetime, MessageModel.Messagetype.Chatt,NotUsed,author,message,NotUsed,NotUsed);
-            await Clients.All.SendAsync("ReceiveMessage", chat.Id, chat.Date, nameof(MessageModel.Messagetype.Chatt), chat.Room, chat.Author, chat.Message, chat.Status, chat.Assigned);
+            await Clients.All.SendAsync("ReceiveChat", chat);
             }
         }
         public async Task SendInvestigate(string id, string casemanager)
