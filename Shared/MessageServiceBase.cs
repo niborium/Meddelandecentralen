@@ -19,6 +19,7 @@ namespace Meddelandecentralen.Pages
     protected string? caseManager;
     protected string? casemanagerMessage;
 
+    //Used in MessageRenderer (list)
     protected override async Task OnInitializedAsync()
     {
         messagetypeInput = "Chat";
@@ -56,6 +57,7 @@ namespace Meddelandecentralen.Pages
         });
         await hubConnection.StartAsync();
     }
+    //Used in MessageInput
     protected async Task SendMessage()
     {
       if (hubConnection is not null)
@@ -70,6 +72,7 @@ namespace Meddelandecentralen.Pages
         }
       }
     }
+    //Used in MessageRenderer
     protected async Task SendInvestigate(string caseId, Delegate hidemodal)
     {
       if (hubConnection is not null)
@@ -84,6 +87,7 @@ namespace Meddelandecentralen.Pages
         }
       }
     }
+    //Used in MessageRenderer
     protected async Task SendDone(string caseId, Delegate hidemodal)
     {
       if (hubConnection is not null)
