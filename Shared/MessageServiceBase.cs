@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.SignalR.Client;
-//@inject NavigationManager Navigation
 using Microsoft.AspNetCore.Components;
 
 namespace Meddelandecentralen.Pages
