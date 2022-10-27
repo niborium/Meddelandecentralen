@@ -1,29 +1,28 @@
 using Meddelandecentralen.Models;
+using Meddelandecentralen.Services;
 using Microsoft.AspNetCore.SignalR;
 
 namespace BlazorServerSignalRApp.Server.Hubs
 {
     public class ChatHub : Hub
     {
+        private readonly IChatService _chatService;
+        public ChatHub(IChatService chatService)
+        {
+            _chatService = chatService;
+        }
         public async Task SendMessage(string messagetype, string room, string author, string message)
         {
             if (string.IsNullOrEmpty(messagetype + room + author + message)){
                 return;
             }
 
-            const string NotUsed = "";
-            const string NotStarted = "Ej påbörjad";
-            const string NotAssigned = "Ej tilldelad";
-
-            DateTime dt = DateTime.Now;
-            var swedatetime= dt.ToString("g");
-
             if(messagetype =="Arbetsorder")
             {
-            MessageModel workorder = new(Guid.NewGuid(), swedatetime, MessageModel.Messagetype.Arbetsorder,room,author,message,NotStarted,NotAssigned);
+            var workorder = _chatService.CreateNewMessage(messagetype,room,author,message);
             await Clients.All.SendAsync("ReceiveWorkorder", workorder);
             } else {
-            MessageModel chat = new(Guid.NewGuid(), swedatetime, MessageModel.Messagetype.Chatt,NotUsed,author,message,NotUsed,NotUsed);
+            var chat = _chatService.CreateNewMessage(messagetype,room,author,message);
             await Clients.All.SendAsync("ReceiveChat", chat);
             }
         }
