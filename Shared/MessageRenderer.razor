@@ -24,7 +24,10 @@
           <BSModal DataId="modalinvestigate">
             <Header>Under utredning</Header>
             <Content>
-              Vill du markera @id som under utredning och tilldela dig till uppgiften?<br><br/>
+              @title<br><br/>
+              @meddelande<br><br/>
+              <b>##########################################</b><br><br/>
+              Vill du markera ovan ( @id ) som under utredning och tilldela dig till uppgiften?<br><br/>
               Ange ditt namn: <input @bind="caseManager" /><br><br/>
               <p style="color: red">@casemanagerMessage</p
             </Content>
@@ -41,7 +44,10 @@
           <BSModal DataId="modaldone">
             <Header>Åtgärdad</Header>
             <Content>
-              Vill du markera @id som åtgärdad och slutföra arbetsorden?<br><br/>
+              @title<br><br/>
+              @meddelande<br><br/>
+              <b>##########################################</b><br><br/>
+              Vill du markera ovan ( @id ) som åtgärdad och slutföra arbetsorden?<br><br/>
               Ange ditt namn: <input @bind="caseManager" />
               <p style="color: red">@casemanagerMessage</p>
             </Content>
