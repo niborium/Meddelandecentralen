@@ -31,17 +31,16 @@ namespace BlazorServerSignalRApp.Server.Hubs
             if (string.IsNullOrEmpty(id + casemanager)){
                 return;
             }
-
-            const string status = "Under utredning";
-            await Clients.All.SendAsync("ReceiveInvestigate", id, casemanager, status);
+            var updatedworkorder = _chatService.UpdateWorkorder(id, casemanager, "Under utredning");
+            await Clients.All.SendAsync("ReceiveInvestigate", updatedworkorder.Item1, updatedworkorder.Item2, updatedworkorder.Item3);
         }
         public async Task SendDone(string id, string casemanager)
         {
             if (string.IsNullOrEmpty(id + casemanager)){
                 return;
             }
-            const string status = "Åtgärdad";
-            await Clients.All.SendAsync("ReceiveDone", id, casemanager, status);
+            var updatedworkorder = _chatService.UpdateWorkorder(id, casemanager, "Åtgärdad");
+            await Clients.All.SendAsync("ReceiveDone", updatedworkorder.Item1, updatedworkorder.Item2, updatedworkorder.Item3);
         }
     }
 }

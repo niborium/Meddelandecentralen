@@ -24,5 +24,8 @@ namespace Meddelandecentralen.Services
         return chat;
       }
     }
+    public (string, string, string) UpdateWorkorder(string id, string casemanager, string status){
+      return (id, casemanager, status);
+    }
   }
 }
